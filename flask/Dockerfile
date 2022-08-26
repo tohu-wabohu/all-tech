@@ -16,12 +16,15 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 COPY _bashrc /root/.bashrc
 
-COPY . /app
+RUN mkdir /app
 WORKDIR /app
-
-RUN mkdir /db
-
+COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD bash
+COPY . /app
+
+RUN mkdir /db
+
+#CMD ["bash"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
