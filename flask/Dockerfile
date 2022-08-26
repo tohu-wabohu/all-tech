@@ -19,6 +19,8 @@ COPY _bashrc /root/.bashrc
 COPY . /app
 WORKDIR /app
 
+RUN mkdir /db
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
