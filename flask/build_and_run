@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker build -t flask . && docker run -it -v $(pwd):/app flask
